@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - SwipeHire</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">SH</span>
+                <span class="logo-text">SwipeHire</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Discover</a></li>
+                <li><a href="browse.html" class="nav-link">Browse Jobs</a></li>
+                <li><a href="applications.html" class="nav-link">Applications</a></li>
+                <li><a href="resume.html" class="nav-link">Resume</a></li>
+                <li><a href="profile.html" class="nav-link active">Profile</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Profile Header -->
+            <section class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-info">
+                    <h1 id="profileName">John Doe</h1>
+                    <p id="profileEmail">john.doe@example.com</p>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="applicationsCount">0</span>
+                            <span class="stat-label">Applications</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="savedJobsCount">0</span>
+                            <span class="stat-label">Saved Jobs</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="profileViews">24</span>
+                            <span class="stat-label">Profile Views</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Content -->
+            <div class="profile-content">
+                <!-- Job Preferences -->
+                <section class="profile-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-briefcase"></i> Job Preferences</h2>
+                        <button class="btn btn-outline btn-small" id="editPreferencesBtn">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                    </div>
+                    
+                    <form id="preferencesForm" class="preferences-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Desired Job Types</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="jobTypes" value="Full-time" checked> Full-time</label>
+                                    <label><input type="checkbox" name="jobTypes" value="Part-time"> Part-time</label>
+                                    <label><input type="checkbox" name="jobTypes" value="Contract"> Contract</label>
+                                    <label><input type="checkbox" name="jobTypes" value="Freelance"> Freelance</label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Preferred Industries</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="industries" value="Technology" checked> Technology</label>
+                                    <label><input type="checkbox" name="industries" value="Healthcare"> Healthcare</label>
+                                    <label><input type="checkbox" name="industries" value="Finance"> Finance</label>
+                                    <label><input type="checkbox" name="industries" value="Education"> Education</label>
+                                    <label><input type="checkbox" name="industries" value="Marketing"> Marketing</label>
+                                    <label><input type="checkbox" name="industries" value="Startup"> Startup</label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label>Preferred Locations</label>
+                                <input type="text" id="preferredLocations" placeholder="San Francisco, New York, Remote...">
+                                <small>Separate multiple locations with commas</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Minimum Salary ($)</label>
+                                <input type="number" id="minSalary" min="0" step="1000" placeholder="80000">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Maximum Salary ($)</label>
+                                <input type="number" id="maxSalary" min="0" step="1000" placeholder="150000">
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label>Remote Work Preference</label>
+                                <select id="remotePreference">
+                                    <option value="any">Any (Remote, Hybrid, or On-site)</option>
+                                    <option value="remote-only">Remote Only</option>
+                                    <option value="hybrid">Hybrid Preferred</option>
+                                    <option value="onsite">On-site Only</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Save Preferences
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Account Settings -->
+                <section class="profile-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-cog"></i> Account Settings</h2>
+                    </div>
+                    
+                    <form id="accountForm" class="account-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" value="John">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" value="Doe">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" value="john.doe@example.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Update Account
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Notification Settings -->
+                <section class="profile-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-bell"></i> Notification Settings</h2>
+                    </div>
+                    
+                    <form id="notificationForm" class="notification-form">
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h3>Job Recommendations</h3>
+                                <p>Get notified about new jobs that match your preferences</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" name="jobRecommendations" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h3>Application Updates</h3>
+                                <p>Receive updates about your job applications</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" name="applicationUpdates" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h3>Interview Reminders</h3>
+                                <p>Get reminders before scheduled interviews</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" name="interviewReminders" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h3>Weekly Summary</h3>
+                                <p>Weekly report of your job search activity</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" name="weeklySummary">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Save Settings
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Data Management -->
+                <section class="profile-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-database"></i> Data Management</h2>
+                    </div>
+                    
+                    <div class="data-actions">
+                        <div class="data-item">
+                            <div class="data-info">
+                                <h3>Export Data</h3>
+                                <p>Download all your data including applications and resume</p>
+                            </div>
+                            <button class="btn btn-outline" id="exportDataBtn">
+                                <i class="fas fa-download"></i> Export Data
+                            </button>
+                        </div>
+                        
+                        <div class="data-item">
+                            <div class="data-info">
+                                <h3>Clear Application History</h3>
+                                <p>Remove all application history and start fresh</p>
+                            </div>
+                            <button class="btn btn-outline btn-warning" id="clearHistoryBtn">
+                                <i class="fas fa-trash"></i> Clear History
+                            </button>
+                        </div>
+                        
+                        <div class="data-item">
+                            <div class="data-info">
+                                <h3>Delete Account</h3>
+                                <p>Permanently delete your account and all associated data</p>
+                            </div>
+                            <button class="btn btn-outline btn-danger" id="deleteAccountBtn">
+                                <i class="fas fa-user-times"></i> Delete Account
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - SwipeHire</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/resume.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">SH</span>
+                <span class="logo-text">SwipeHire</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Discover</a></li>
+                <li><a href="browse.html" class="nav-link">Browse Jobs</a></li>
+                <li><a href="applications.html" class="nav-link">Applications</a></li>
+                <li><a href="resume.html" class="nav-link active">Resume</a></li>
+                <li><a href="profile.html" class="nav-link">Profile</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Header Section -->
+            <section class="resume-header">
+                <div class="resume-header-content">
+                    <div class="resume-title">
+                        <h1>Resume Builder</h1>
+                        <p>Create a professional resume that gets you hired</p>
+                    </div>
+                    <div class="resume-actions">
+                        <button class="btn btn-outline" id="previewBtn">
+                            <i class="fas fa-eye"></i> Preview
+                        </button>
+                        <button class="btn btn-primary" id="downloadBtn">
+                            <i class="fas fa-download"></i> Download PDF
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resume Form -->
+            <section class="resume-form-section">
+                <form id="resumeForm" class="resume-form">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-user"></i>
+                            Personal Information
+                        </h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" name="address" placeholder="City, State">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="linkedin">LinkedIn Profile</label>
+                                <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Professional Summary -->
+                    <div class="form-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-file-text"></i>
+                            Professional Summary
+                        </h2>
+                        <div class="form-group">
+                            <label for="summary">Summary</label>
+                            <textarea id="summary" name="summary" rows="4" placeholder="Write a brief overview of your professional background and key achievements..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Work Experience -->
+                    <div class="form-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-briefcase"></i>
+                            Work Experience
+                        </h2>
+                        <div id="experienceList" class="experience-list">
+                            <!-- Experience items will be dynamically added here -->
+                        </div>
+                        <button type="button" class="btn btn-outline" id="addExperienceBtn">
+                            <i class="fas fa-plus"></i> Add Experience
+                        </button>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="form-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            Education
+                        </h2>
+                        <div id="educationList" class="education-list">
+                            <!-- Education items will be dynamically added here -->
+                        </div>
+                        <button type="button" class="btn btn-outline" id="addEducationBtn">
+                            <i class="fas fa-plus"></i> Add Education
+                        </button>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="form-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-cogs"></i>
+                            Skills
+                        </h2>
+                        <div class="skills-grid">
+                            <div class="form-group">
+                                <label for="technicalSkills">Technical Skills</label>
+                                <textarea id="technicalSkills" name="technicalSkills" rows="3" placeholder="JavaScript, React, Node.js, Python, SQL..."></textarea>
+                                <small>Separate skills with commas</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="softSkills">Soft Skills</label>
+                                <textarea id="softSkills" name="softSkills" rows="3" placeholder="Leadership, Communication, Problem Solving..."></textarea>
+                                <small>Separate skills with commas</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-save"></i> Save Resume
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/resume.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

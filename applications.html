@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications - SwipeHire</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/applications.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">SH</span>
+                <span class="logo-text">SwipeHire</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Discover</a></li>
+                <li><a href="browse.html" class="nav-link">Browse Jobs</a></li>
+                <li><a href="applications.html" class="nav-link active">Applications</a></li>
+                <li><a href="resume.html" class="nav-link">Resume</a></li>
+                <li><a href="profile.html" class="nav-link">Profile</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Header Section -->
+            <section class="applications-header">
+                <h1>My Applications</h1>
+                <p>Track and manage your job applications</p>
+            </section>
+
+            <!-- Status Tabs -->
+            <section class="status-tabs-section">
+                <div class="status-tabs">
+                    <button class="status-tab active" data-status="all">
+                        <span class="tab-text">All Applications</span>
+                        <span class="tab-count" id="allCount">0</span>
+                    </button>
+                    <button class="status-tab" data-status="pending">
+                        <span class="tab-text">Pending</span>
+                        <span class="tab-count" id="pendingCount">0</span>
+                    </button>
+                    <button class="status-tab" data-status="interview">
+                        <span class="tab-text">Interview</span>
+                        <span class="tab-count" id="interviewCount">0</span>
+                    </button>
+                    <button class="status-tab" data-status="rejected">
+                        <span class="tab-text">Rejected</span>
+                        <span class="tab-count" id="rejectedCount">0</span>
+                    </button>
+                    <button class="status-tab" data-status="accepted">
+                        <span class="tab-text">Accepted</span>
+                        <span class="tab-count" id="acceptedCount">0</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Applications List -->
+            <section class="applications-list-section">
+                <div id="applicationsList" class="applications-list">
+                    <!-- Application items will be dynamically inserted here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwipeHire - Find Your Dream Job</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta name="description" content="Swipe through job opportunities and find your perfect match">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">SH</span>
+                <span class="logo-text">SwipeHire</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Discover</a></li>
+                <li><a href="browse.html" class="nav-link">Browse Jobs</a></li>
+                <li><a href="applications.html" class="nav-link">Applications</a></li>
+                <li><a href="resume.html" class="nav-link">Resume</a></li>
+                <li><a href="profile.html" class="nav-link">Profile</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Header Section -->
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1>Discover Your Next <span class="highlight">Dream Job</span></h1>
+                    <p>Swipe through curated job opportunities that match your skills and preferences</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number">10K+</span>
+                            <span class="stat-label">Jobs Available</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Companies</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">95%</span>
+                            <span class="stat-label">Success Rate</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Job Swipe Section -->
+            <section class="swipe-section">
+                <div class="swipe-container">
+                    <div class="swipe-header">
+                        <h2>Jobs For You</h2>
+                        <div class="swipe-controls">
+                            <button id="undoBtn" class="control-btn undo-btn" title="Undo last action">
+                                <i class="fas fa-undo"></i>
+                            </button>
+                            <button id="refreshBtn" class="control-btn refresh-btn" title="Refresh jobs">
+                                <i class="fas fa-refresh"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="job-stack" id="jobStack">
+                        <!-- Job cards will be dynamically inserted here -->
+                    </div>
+                    
+                    <div class="no-jobs-message" id="noJobsMessage" style="display: none;">
+                        <div class="empty-state">
+                            <i class="fas fa-briefcase"></i>
+                            <h3>All caught up!</h3>
+                            <p>No more jobs to show right now. Check back later for new opportunities.</p>
+                            <button id="loadMoreBtn" class="btn btn-primary">Load More Jobs</button>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="rejectBtn" class="action-btn reject-btn" title="Pass on this job">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <button id="saveBtn" class="action-btn save-btn" title="Save for later">
+                            <i class="fas fa-bookmark"></i>
+                        </button>
+                        <button id="applyBtn" class="action-btn apply-btn" title="Apply now">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+
+                    <div class="swipe-instructions">
+                        <p>Swipe or use buttons to interact with job cards</p>
+                        <div class="instruction-icons">
+                            <span><i class="fas fa-arrow-left text-red"></i> Pass</span>
+                            <span><i class="fas fa-arrow-up text-blue"></i> Save</span>
+                            <span><i class="fas fa-arrow-right text-green"></i> Apply</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/swipe.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
