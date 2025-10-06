@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - SwipeHire</title>
+    <!-- Add this before your existing scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/resume.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">SH</span>
+                <span class="logo-text">SwipeHire</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Discover</a></li>
+                <li><a href="browse.html" class="nav-link">Browse Jobs</a></li>
+                <li><a href="applications.html" class="nav-link">Applications</a></li>
+                <li><a href="resume.html" class="nav-link active">Resume</a></li>
+                <li><a href="profile.html" class="nav-link">Profile</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Header Section -->
+            <section class="resume-header">
+                <div class="resume-header-content">
+                    <div class="resume-title">
+                        <h1>Resume Builder</h1>
+                        <p>Create a professional resume tailored to your industry</p>
+                    </div>
+                    <div class="resume-actions">
+                        <button class="btn btn-outline" id="previewBtn">
+                            <i class="fas fa-eye"></i> Preview
+                        </button>
+                        <button class="btn btn-primary" id="downloadBtn">
+                            <i class="fas fa-download"></i> Download PDF
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Indicator -->
+            <section class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="resumeProgress" style="width: 0%"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progressPercentage">0%</span> Complete
+                </div>
+            </section>
+
+            <!-- Industry Selection -->
+            <section class="industry-section">
+                <div class="industry-selector">
+                    <h3>Select Your Industry</h3>
+                    <p>Choose your field to get customized resume sections</p>
+                    <div class="industry-options">
+                        <div class="industry-option active" data-industry="technology">
+                            <i class="fas fa-code"></i>
+                            <span>Technology</span>
+                        </div>
+                        <div class="industry-option" data-industry="business">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Business & Finance</span>
+                        </div>
+                        <div class="industry-option" data-industry="healthcare">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>Healthcare</span>
+                        </div>
+                        <div class="industry-option" data-industry="creative">
+                            <i class="fas fa-palette"></i>
+                            <span>Creative & Design</span>
+                        </div>
+                        <div class="industry-option" data-industry="education">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Education</span>
+                        </div>
+                        <div class="industry-option" data-industry="general">
+                            <i class="fas fa-briefcase"></i>
+                            <span>General</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Template Selection -->
+            <section class="resume-templates">
+                <div class="template-selector">
+                    <h3>Choose Template Style</h3>
+                    <div class="template-options">
+                        <div class="template-option active" data-template="modern">
+                            <div class="template-preview modern-preview"></div>
+                            <span>Modern</span>
+                        </div>
+                        <div class="template-option" data-template="professional">
+                            <div class="template-preview professional-preview"></div>
+                            <span>Professional</span>
+                        </div>
+                        <div class="template-option" data-template="creative">
+                            <div class="template-preview creative-preview"></div>
+                            <span>Creative</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resume Form -->
+            <section class="resume-form-section">
+                <form id="resumeForm" class="resume-form">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-user"></i>
+                            Personal Information
+                        </h2>
+                        <div class="form-grid">
+                            <div class="form-group required">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group required">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                            <div class="form-group required">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city">
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" id="state" name="state">
+                            </div>
+                            <div class="form-group">
+                                <label for="zipCode">ZIP Code</label>
+                                <input type="text" id="zipCode" name="zipCode">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="linkedin">LinkedIn Profile</label>
+                                <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="portfolio">Portfolio/GitHub</label>
+                                <input type="url" id="portfolio" name="portfolio" placeholder="https://github.com/yourusername">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Professional Summary -->
+                    <div class="form-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-file-text"></i>
+                            Professional Summary
+                        </h2>
+                        <div class="form-group">
+                            <label for="summary">Summary</label>
+                            <textarea id="summary" name="summary" rows="4" placeholder="Write a brief overview of your professional background and key achievements..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Work Experience -->
+                    <div class="form-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-briefcase"></i>
+                            Work Experience
+                        </h2>
+                        <div id="experienceList" class="experience-list">
+                            <!-- Experience items will be dynamically added here -->
+                        </div>
+                        <button type="button" class="btn btn-outline" id="addExperienceBtn">
+                            <i class="fas fa-plus"></i> Add Experience
+                        </button>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="form-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            Education
+                        </h2>
+                        <div id="educationList" class="education-list">
+                            <!-- Education items will be dynamically added here -->
+                        </div>
+                        <button type="button" class="btn btn-outline" id="addEducationBtn">
+                            <i class="fas fa-plus"></i> Add Education
+                        </button>
+                    </div>
+
+                    <!-- Industry Specific Sections -->
+                    
+                    <!-- Technology Section -->
+                    <div class="form-section industry-specific" data-industry="technology">
+                        <h2 class="section-title">
+                            <i class="fas fa-laptop-code"></i>
+                            Technical Skills & Projects
+                        </h2>
+                        <div id="projectsList" class="projects-list">
+                            <!-- Project items will be dynamically added here -->
+                        </div>
+                        <button type="button" class="btn btn-outline" id="addProjectBtn">
+                            <i class="fas fa-plus"></i> Add Project
+                        </button>
+                        
+                        <div class="form-group">
+                            <label>Programming Languages</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="programmingLanguagesInput" placeholder="JavaScript, Python, Java...">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('programmingLanguages')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="programmingLanguagesTags" class="skills-tags"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Frameworks & Libraries</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="frameworksInput" placeholder="React, Node.js, Django...">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('frameworks')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="frameworksTags" class="skills-tags"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Tools & Technologies</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="toolsInput" placeholder="Git, Docker, AWS...">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('tools')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="toolsTags" class="skills-tags"></div>
+                        </div>
+                    </div>
+
+                    <!-- Business & Finance Section -->
+                    <div class="form-section industry-specific" data-industry="business">
+                        <h2 class="section-title">
+                            <i class="fas fa-chart-bar"></i>
+                            Business & Financial Expertise
+                        </h2>
+                        
+                        <div class="form-group">
+                            <label>Financial Skills</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="financialSkillsInput" placeholder="Financial Analysis, Budgeting, Forecasting...">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('financialSkills')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="financialSkillsTags" class="skills-tags"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Business Tools</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="businessToolsInput" placeholder="Excel, Salesforce, SAP...">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('businessTools')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="businessToolsTags" class="skills-tags"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Certifications</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="businessCertsInput" placeholder="CPA, CFA, PMP...">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('businessCerts')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="businessCertsTags" class="skills-tags"></div>
+                        </div>
+                    </div>
+
+                    <!-- Healthcare Section -->
+                    <div class="form-section industry-specific" data-industry="healthcare">
+                        <h2 class="section-title">
+                            <i class="fas fa-stethoscope"></i>
+                            Medical Expertise & Certifications
+                        </h2>
+                        
+                        <div class="form-group">
+                            <label>Medical Skills</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="medicalSkillsInput" placeholder="Patient Care, Medical Procedures, Diagnostics...">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('medicalSkills')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="medicalSkillsTags" class="skills-tags"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Medical Certifications</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="medicalCertsInput" placeholder="RN, BLS, ACLS...">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('medicalCerts')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="medicalCertsTags" class="skills-tags"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Specializations</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="specializationsInput" placeholder="Cardiology, Pediatrics, Surgery...">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('specializations')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="specializationsTags" class="skills-tags"></div>
+                        </div>
+                    </div>
+
+                    <!-- Creative & Design Section -->
+                    <div class="form-section industry-specific" data-industry="creative">
+                        <h2 class="section-title">
+                            <i class="fas fa-paint-brush"></i>
+                            Creative Portfolio & Skills
+                        </h2>
+                        
+                        <div id="creativeProjectsList" class="projects-list">
+                            <!-- Creative project items will be dynamically added here -->
+                        </div>
+                        <button type="button" class="btn btn-outline" id="addCreativeProjectBtn">
+                            <i class="fas fa-plus"></i> Add Creative Project
+                        </button>
+                        
+                        <div class="form-group">
+                            <label>Design Tools</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="designToolsInput" placeholder="Photoshop, Illustrator, Figma...">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('designTools')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="designToolsTags" class="skills-tags"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Creative Skills</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="creativeSkillsInput" placeholder="UI/UX Design, Branding, Illustration...">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('creativeSkills')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="creativeSkillsTags" class="skills-tags"></div>
+                        </div>
+                    </div>
+
+                    <!-- Education Section -->
+                    <div class="form-section industry-specific" data-industry="education">
+                        <h2 class="section-title">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            Teaching Experience & Certifications
+                        </h2>
+                        
+                        <div class="form-group">
+                            <label>Teaching Certifications</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="teachingCertsInput" placeholder="State Certification, TESOL, Special Ed...">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('teachingCerts')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="teachingCertsTags" class="skills-tags"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Subjects & Grades</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="subjectsInput" placeholder="Mathematics, K-12, Elementary...">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('subjects')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="subjectsTags" class="skills-tags"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Teaching Methods</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="teachingMethodsInput" placeholder="Montessori, Project-Based, Differentiated...">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('teachingMethods')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="teachingMethodsTags" class="skills-tags"></div>
+                        </div>
+                    </div>
+
+                    <!-- General Skills Section -->
+                    <div class="form-section industry-specific" data-industry="general">
+                        <h2 class="section-title">
+                            <i class="fas fa-cogs"></i>
+                            Skills & Expertise
+                        </h2>
+                        
+                        <div class="form-group">
+                            <label>Technical Skills</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="technicalSkillsInput" placeholder="Add technical skills">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('technical')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="technicalSkillsTags" class="skills-tags"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Soft Skills</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="softSkillsInput" placeholder="Add soft skills">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('soft')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="softSkillsTags" class="skills-tags"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Languages</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="languagesInput" placeholder="Add languages">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('languages')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="languagesTags" class="skills-tags"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Certifications</label>
+                            <div class="tags-input-container">
+                                <input type="text" id="certificationsInput" placeholder="Add certifications">
+                                <button type="button" class="btn-small" onclick="resumeBuilder.addSkill('certifications')">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div id="certificationsTags" class="skills-tags"></div>
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-save"></i> Save Resume
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/resume.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
