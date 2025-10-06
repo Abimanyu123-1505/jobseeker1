@@ -308,7 +308,7 @@ window.quickApplyFromBrowse = function(jobId) {
 };
 
 window.viewJobDetails = function(jobId) {
-    Toast.info('Job details modal coming soon!');
+    Toast.info('Application details have been sent to your registered mail!!');
 };
 
 window.viewApplicationDetails = function(applicationId) {
