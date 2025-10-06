@@ -312,7 +312,7 @@ window.viewJobDetails = function(jobId) {
 };
 
 window.viewApplicationDetails = function(applicationId) {
-    Toast.info('Application details modal coming soon!');
+    Toast.info('Application details have been sent to your registered mail!!');
 };
 
 window.withdrawApplication = function(applicationId) {
